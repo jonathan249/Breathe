@@ -1,24 +1,65 @@
 import { Tabs } from "expo-router";
+import { SymbolView } from "expo-symbols";
+
+import { COLORS } from "@/constants/theme";
 
 export default function RootLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#2A6F68",
-        tabBarInactiveTintColor: "#6B7976",
+        sceneStyle: {
+          backgroundColor: COLORS.background,
+        },
+        tabBarActiveTintColor: COLORS.green,
+        tabBarInactiveTintColor: COLORS.dim,
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          backgroundColor: "#F7F1E8",
-          borderTopColor: "#E4DCD0",
+          backgroundColor: COLORS.surface,
+          borderTopColor: COLORS.border,
+          borderTopWidth: 1,
+          height: 76,
+          paddingBottom: 10,
+          paddingTop: 8,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: "700",
+          fontSize: 10,
+          fontWeight: "800",
+          letterSpacing: 1.2,
+          textTransform: "uppercase",
         },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: "Breathe" }} />
-      <Tabs.Screen name="history" options={{ title: "History" }} />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Breathe",
+          tabBarIcon: ({ color, focused }) => (
+            <SymbolView
+              name={{ ios: "wind", android: "air", web: "air" }}
+              tintColor={color}
+              size={focused ? 27 : 24}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="history"
+        options={{
+          title: "History",
+          tabBarIcon: ({ color, focused }) => (
+            <SymbolView
+              name={{
+                ios: "chart.bar.xaxis",
+                android: "monitoring",
+                web: "monitoring",
+              }}
+              tintColor={color}
+              size={focused ? 27 : 24}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import { COLORS, RADII } from "@/constants/theme";
 import { formatDuration } from "@/lib/breathEngine";
 import type { BreathSessionRecord } from "@/types/breath";
 
@@ -24,6 +25,7 @@ export function SessionList({ sessions }: SessionListProps) {
 
         return (
           <View key={session.id} style={styles.item}>
+            <View style={styles.sessionMarker} />
             <View>
               <Text style={styles.mode}>{session.modeName}</Text>
               <Text style={styles.meta}>
@@ -60,34 +62,41 @@ const styles = StyleSheet.create({
   },
   item: {
     alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    borderColor: "#E4DCD0",
-    borderRadius: 8,
+    backgroundColor: COLORS.surface,
+    borderColor: COLORS.border,
+    borderRadius: RADII.medium,
     borderWidth: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
+    gap: 12,
     marginBottom: 8,
-    minHeight: 70,
+    minHeight: 78,
     paddingHorizontal: 14,
     paddingVertical: 10,
   },
+  sessionMarker: {
+    backgroundColor: COLORS.green,
+    borderRadius: RADII.pill,
+    height: 36,
+    opacity: 0.85,
+    width: 4,
+  },
   mode: {
-    color: "#1D2523",
+    color: COLORS.text,
     fontSize: 16,
     fontWeight: "800",
     marginBottom: 4,
   },
   meta: {
-    color: "#5D6D69",
+    color: COLORS.muted,
     fontSize: 12,
     fontWeight: "600",
   },
   trailing: {
     alignItems: "flex-end",
-    marginLeft: 12,
+    marginLeft: "auto",
   },
   duration: {
-    color: "#163B35",
+    color: COLORS.text,
     fontSize: 17,
     fontWeight: "800",
     marginBottom: 4,
@@ -97,28 +106,28 @@ const styles = StyleSheet.create({
     fontWeight: "800",
   },
   completed: {
-    color: "#2A6F68",
+    color: COLORS.green,
   },
   partial: {
-    color: "#B24D43",
+    color: COLORS.amber,
   },
   empty: {
     alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    borderColor: "#E4DCD0",
-    borderRadius: 8,
+    backgroundColor: COLORS.surface,
+    borderColor: COLORS.border,
+    borderRadius: RADII.medium,
     borderWidth: 1,
     marginTop: 10,
     padding: 22,
   },
   emptyTitle: {
-    color: "#1D2523",
+    color: COLORS.text,
     fontSize: 16,
     fontWeight: "800",
     marginBottom: 4,
   },
   emptyText: {
-    color: "#5D6D69",
+    color: COLORS.muted,
     fontSize: 13,
     textAlign: "center",
   },

@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+import { COLORS, RADII } from "@/constants/theme";
 import type { BreathSessionRecord } from "@/types/breath";
 
 type CalendarHeatmapProps = {
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   weekday: {
-    color: "#6B7976",
+    color: COLORS.dim,
     flex: 1,
     fontSize: 11,
     fontWeight: "800",
@@ -128,9 +129,9 @@ const styles = StyleSheet.create({
   dayCell: {
     alignItems: "center",
     aspectRatio: 1,
-    backgroundColor: "#F2EEE7",
-    borderColor: "#E4DCD0",
-    borderRadius: 7,
+    backgroundColor: COLORS.surfaceRaised,
+    borderColor: COLORS.border,
+    borderRadius: RADII.small,
     borderWidth: 1,
     justifyContent: "center",
     marginBottom: 6,
@@ -138,31 +139,31 @@ const styles = StyleSheet.create({
     width: "12.85%",
   },
   levelOne: {
-    backgroundColor: "#D9F0EC",
-    borderColor: "#B9DDD6",
+    backgroundColor: "#0C3021",
+    borderColor: "#145A3D",
   },
   levelTwo: {
-    backgroundColor: "#87C9BD",
-    borderColor: "#6BB5A8",
+    backgroundColor: "#087044",
+    borderColor: "#0A9B5B",
   },
   levelThree: {
-    backgroundColor: "#2A6F68",
-    borderColor: "#2A6F68",
+    backgroundColor: COLORS.green,
+    borderColor: COLORS.green,
   },
   today: {
-    borderColor: "#E06C5F",
+    borderColor: COLORS.amber,
     borderWidth: 2,
   },
   selected: {
-    borderColor: "#163B35",
+    borderColor: COLORS.text,
     borderWidth: 2,
   },
   dayText: {
-    color: "#1D2523",
+    color: COLORS.text,
     fontSize: 13,
     fontWeight: "800",
   },
   dayTextStrong: {
-    color: "#FFFFFF",
+    color: COLORS.black,
   },
 });

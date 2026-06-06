@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import { COLORS, RADII } from "@/constants/theme";
+
 type HistorySummaryProps = {
   totalSessions: number;
   totalMinutes: number;
@@ -13,17 +15,26 @@ export function HistorySummary({
 }: HistorySummaryProps) {
   return (
     <View style={styles.row}>
-      <SummaryItem label="Sessions" value={totalSessions.toString()} />
+      <SummaryItem label="Sessions" value={totalSessions.toString()} accent />
       <SummaryItem label="Minutes" value={totalMinutes.toString()} />
       <SummaryItem label="Streak" value={`${currentStreak}d`} />
     </View>
   );
 }
 
-function SummaryItem({ label, value }: { label: string; value: string }) {
+function SummaryItem({
+  label,
+  value,
+  accent = false,
+}: {
+  label: string;
+  value: string;
+  accent?: boolean;
+}) {
   return (
-    <View style={styles.item}>
-      <Text style={styles.value}>{value}</Text>
+    <View style={[styles.item, accent && styles.itemAccent]}>
+      <View style={[styles.indicator, accent && styles.indicatorAccent]} />
+      <Text style={[styles.value, accent && styles.valueAccent]}>{value}</Text>
       <Text style={styles.label}>{label}</Text>
     </View>
   );
@@ -32,28 +43,47 @@ function SummaryItem({ label, value }: { label: string; value: string }) {
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
-    marginBottom: 18,
+    gap: 10,
+    marginBottom: 24,
   },
   item: {
-    backgroundColor: "#EEF5F2",
-    borderColor: "#D6E2DE",
-    borderRadius: 8,
+    backgroundColor: COLORS.surface,
+    borderColor: COLORS.border,
+    borderRadius: RADII.medium,
     borderWidth: 1,
     flex: 1,
-    height: 76,
+    height: 112,
     justifyContent: "center",
-    marginRight: 8,
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
+  },
+  itemAccent: {
+    backgroundColor: COLORS.surfaceGreen,
+    borderColor: "#135A3E",
+  },
+  indicator: {
+    backgroundColor: COLORS.borderStrong,
+    borderRadius: RADII.pill,
+    height: 4,
+    marginBottom: 13,
+    width: 22,
+  },
+  indicatorAccent: {
+    backgroundColor: COLORS.green,
   },
   value: {
-    color: "#163B35",
-    fontSize: 24,
-    fontWeight: "800",
+    color: COLORS.text,
+    fontSize: 28,
+    fontWeight: "500",
     marginBottom: 2,
   },
+  valueAccent: {
+    color: COLORS.green,
+  },
   label: {
-    color: "#5D6D69",
-    fontSize: 12,
-    fontWeight: "700",
+    color: COLORS.muted,
+    fontSize: 10,
+    fontWeight: "800",
+    letterSpacing: 0.8,
+    textTransform: "uppercase",
   },
 });

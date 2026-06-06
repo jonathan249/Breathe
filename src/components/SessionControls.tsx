@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+import { COLORS, RADII } from "@/constants/theme";
 import type { BreathSessionStatus } from "@/hooks/useBreathSession";
 import type { BreathMode } from "@/types/breath";
 
@@ -39,7 +40,10 @@ export function SessionControls({
   return (
     <View style={styles.wrapper}>
       <View style={styles.segmentGroup}>
-        <Text style={styles.segmentLabel}>{cycleBased ? "Cycles" : "Minutes"}</Text>
+        <View style={styles.segmentHeader}>
+          <Text style={styles.segmentLabel}>Session length</Text>
+          <Text style={styles.segmentUnit}>{cycleBased ? "Cycles" : "Minutes"}</Text>
+        </View>
         <View style={styles.segments}>
           {(cycleBased ? CYCLE_OPTIONS : DURATION_OPTIONS).map((value) => {
             const selected = cycleBased
@@ -104,69 +108,88 @@ export function SessionControls({
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: 6,
+    marginTop: 18,
   },
   segmentGroup: {
-    marginBottom: 14,
+    marginBottom: 16,
+  },
+  segmentHeader: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   segmentLabel: {
-    color: "#163B35",
-    fontSize: 14,
-    fontWeight: "700",
-    marginBottom: 8,
+    color: COLORS.text,
+    fontSize: 17,
+    fontWeight: "800",
+    marginBottom: 10,
+  },
+  segmentUnit: {
+    color: COLORS.dim,
+    fontSize: 10,
+    fontWeight: "800",
+    letterSpacing: 1,
+    marginBottom: 10,
+    textTransform: "uppercase",
   },
   segments: {
-    backgroundColor: "#EEF5F2",
-    borderRadius: 8,
+    backgroundColor: COLORS.surface,
+    borderColor: COLORS.border,
+    borderRadius: RADII.medium,
+    borderWidth: 1,
     flexDirection: "row",
-    padding: 4,
+    padding: 5,
   },
   segment: {
     alignItems: "center",
-    borderRadius: 6,
+    borderRadius: RADII.small,
     flex: 1,
-    height: 40,
+    height: 44,
     justifyContent: "center",
   },
   segmentSelected: {
-    backgroundColor: "#2A6F68",
+    backgroundColor: COLORS.greenMuted,
+    borderColor: COLORS.green,
+    borderWidth: 1,
   },
   segmentText: {
-    color: "#5D6D69",
+    color: COLORS.muted,
     fontSize: 15,
     fontWeight: "800",
   },
   segmentTextSelected: {
-    color: "#FFFFFF",
+    color: COLORS.green,
   },
   actionRow: {
     flexDirection: "row",
+    gap: 10,
   },
   primaryButton: {
     alignItems: "center",
-    backgroundColor: "#2A6F68",
-    borderRadius: 8,
+    backgroundColor: COLORS.green,
+    borderRadius: RADII.medium,
     flex: 1,
-    height: 54,
+    height: 58,
     justifyContent: "center",
-    marginRight: 10,
   },
   primaryText: {
-    color: "#FFFFFF",
+    color: COLORS.black,
     fontSize: 17,
-    fontWeight: "800",
+    fontWeight: "900",
+    letterSpacing: 0.5,
   },
   secondaryButton: {
     alignItems: "center",
-    borderColor: "#E06C5F",
-    borderRadius: 8,
+    backgroundColor: COLORS.surface,
+    borderColor: COLORS.borderStrong,
+    borderRadius: RADII.medium,
     borderWidth: 1,
-    height: 54,
+    height: 58,
     justifyContent: "center",
-    width: 92,
+    width: 100,
   },
   secondaryText: {
-    color: "#B24D43",
+    color: COLORS.text,
     fontSize: 15,
     fontWeight: "800",
   },
